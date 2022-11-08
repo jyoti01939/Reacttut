@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 
 export default function Textform(props) {
   const handleUpClick = () => {
@@ -24,7 +26,7 @@ export default function Textform(props) {
   const [text, setText] = useState("");
   return (
     <>
-      <div className="container">
+      <div className="container" style={{ color: props.mode === 'dark'?'white':'black' }}>
         <h3>{props.heading}</h3>
         <div className="mb-3">
           <textarea
@@ -33,6 +35,7 @@ export default function Textform(props) {
             rows="8"
             value={text}
             onChange={handleOnChange}
+            style={{ backgroundColor: props.mode === 'dark'?'grey':'white' , color:props.mode === 'dark'?'white':'black'}}
           ></textarea>
         </div>
         <button
@@ -55,14 +58,14 @@ export default function Textform(props) {
         </button>
       </div>
 
-      <div className="container my-5">
+      <div className="container my-5" style={{ color: props.mode === 'dark'?'white':'black' }}>
         <h3>Your Text Here</h3>
         <p>
           {text.split(" ").length} words {text.length} characters
         </p>
         <p>{0.008 * text.split(" ").length} Mintues to read</p>
         <h4>Preview</h4>
-        <p>{text}</p>
+        <p>{text.length>0?text:'Enter something to preview it here'}</p>
       </div>
     </>
   );
